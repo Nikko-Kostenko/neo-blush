@@ -1,6 +1,6 @@
 # Neo Blush
 
-A pink glass desktop for NixOS and Hyprland, with a matching SDDM login screen,
+A pink glass heavily MacOS inspired desktop for NixOS and Hyprland, with a matching SDDM login screen,
 Waybar menu bar, Control Center, Dynamic Island, Rofi launcher, Kitty, styled
 file managers, browser appearance, notifications, and lock screen.
 
