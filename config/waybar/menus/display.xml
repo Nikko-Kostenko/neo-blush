@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+      <object class="GtkMenuItem" id="header">
+        <property name="label">DISPLAY BRIGHTNESS</property>
+        <property name="sensitive">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="low">
+        <property name="label">25%  ·  Soft</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="medium">
+        <property name="label">50%  ·  Balanced</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="high">
+        <property name="label">75%  ·  Bright</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="full">
+        <property name="label">100%  ·  Maximum</property>
+      </object>
+    </child>
+  </object>
+</interface>

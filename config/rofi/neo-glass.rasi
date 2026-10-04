@@ -1,0 +1,62 @@
+* {
+    background-color: transparent;
+    text-color: #452c3b;
+    border-color: #fff9fd85;
+    font: "SF Pro Text 13";
+    spacing: 8px;
+}
+
+window {
+    width: 560px;
+    location: center;
+    anchor: center;
+    transparency: "real";
+    background-color: transparent;
+    background-image: linear-gradient(155deg, rgba(255, 250, 253, 0.72), rgba(255, 242, 249, 0.60), rgba(252, 235, 245, 0.68));
+    border: 1px;
+    border-radius: 24px;
+    padding: 18px;
+}
+
+mainbox { children: [ inputbar, mode-switcher, message, listview ]; spacing: 12px; }
+inputbar {
+    children: [ textbox-search, prompt, entry ];
+    background-color: #ffffff2e;
+    border-radius: 16px;
+    padding: 12px 14px;
+    spacing: 12px;
+}
+textbox-search {
+    str: "􀊫";
+    font: "SF Pro Text 18";
+    text-color: #76636f;
+    vertical-align: 0.5;
+    expand: false;
+}
+entry {
+    font: "SF Pro Display 16";
+    placeholder: "Search…";
+    placeholder-color: #76636f;
+    vertical-align: 0.5;
+}
+prompt {
+    font: "SF Pro Text 13";
+    text-color: #452c3b;
+    vertical-align: 0.5;
+    expand: false;
+}
+mode-switcher { enabled: true; spacing: 6px; }
+button { padding: 7px 10px; border-radius: 12px; text-color: #76636f; }
+button selected { background-color: #a83f741a; text-color: #452c3b; }
+message { border: 0px; padding: 4px 10px; }
+textbox { text-color: #76636f; font: "SF Pro Text 12"; }
+listview { lines: 7; columns: 1; fixed-height: false; spacing: 4px; scrollbar: false; }
+element { padding: 11px 12px; border-radius: 14px; spacing: 12px; }
+element normal.normal, element alternate.normal { background-color: transparent; }
+element selected.normal { background-color: #a83f741a; text-color: #452c3b; }
+element normal.urgent { text-color: #b03957; }
+element selected.urgent { background-color: #f0b5c4; text-color: #6b293e; }
+element normal.active { text-color: #a83f74; }
+element selected.active { background-color: #a83f741a; text-color: #452c3b; }
+element-icon { size: 22px; }
+element-text { vertical-align: 0.5; text-color: inherit; }

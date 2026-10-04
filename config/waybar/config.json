@@ -1,0 +1,226 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+  "spacing": 1,
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/desktop",
+    "hyprland/window",
+    "custom/apps",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/island"
+  ],
+  "modules-right": [
+    "battery",
+    "tray",
+    "custom/notifications",
+    "custom/search",
+    "custom/control",
+    "clock"
+  ],
+  "custom/desktop": {
+    "format": "",
+    "tooltip-format": "Neo Blush · Desktop menu",
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/menus/desktop.xml",
+    "menu-actions": {
+      "about": "rofi -e 'Neo Blush — pink glass desktop\nHyprland · Kitty · Waybar\nSuper+Space: Search   Super+Q: Terminal\nSuper+L: Lock   Super+M: Session'",
+      "applications": "rofi -show drun",
+      "terminal": "kitty",
+      "files": "~/.local/bin/neo-files",
+      "lock": "neo-session lock",
+      "sleep": "neo-session sleep",
+      "logout": "neo-session logout",
+      "reboot": "neo-session reboot",
+      "poweroff": "neo-session poweroff"
+    }
+  },
+  "custom/apps": {
+    "format": "Applications",
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Search applications · Super+Space"
+  },
+  "hyprland/window": {
+    "format": "{class}",
+    "max-length": 20,
+    "separate-outputs": true,
+    "rewrite": {
+      "[Bb]rave.*": "Brave",
+      "[Ff]irefox.*": "Firefox",
+      "org.kde.dolphin": "Files",
+      "[Tt]hunar": "Files",
+      "kitty": "Terminal",
+      "org.gnome.Nautilus": "Files",
+      "[Cc]ode.*": "Code",
+      "[Ss]team.*": "Steam"
+    },
+    "tooltip-format": "{title}"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "●",
+      "default": "○",
+      "urgent": "!"
+    },
+    "all-outputs": false,
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "*": 4
+    }
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 1,
+    "show-passive-items": false,
+    "menu-position": "below",
+    "menu-on-left-click": [
+      "nm-applet",
+      "blueman"
+    ],
+    "icons": {
+      "nm-applet": "~/.local/share/neo-menu-bar/icons/wifi.svg",
+      "nm-applet:nm-no-connection": "~/.local/share/neo-menu-bar/icons/wifi-off.svg",
+      "nm-applet:nm-offline": "~/.local/share/neo-menu-bar/icons/wifi-off.svg",
+      "nm-applet:nm-device-wired": "~/.local/share/neo-menu-bar/icons/network.svg",
+      "blueman": "~/.local/share/neo-menu-bar/icons/bluetooth.svg",
+      "blueman:blueman-disabled": "~/.local/share/neo-menu-bar/icons/bluetooth-off.svg"
+    }
+  },
+  "network": {
+    "format-wifi": "􀙇",
+    "format-ethernet": "􀤆",
+    "format-linked": "􀤆",
+    "format-disconnected": "􀙈",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ipaddr}\nClick for Wi-Fi controls",
+    "tooltip-format-ethernet": "Ethernet · {ifname}\n{ipaddr}",
+    "tooltip-format-disconnected": "Offline · Click for Wi-Fi controls",
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/menus/network.xml",
+    "menu-actions": {
+      "settings": "nm-connection-editor",
+      "enable": "nmcli radio wifi on",
+      "disable": "nmcli radio wifi off",
+      "rescan": "nmcli device wifi rescan"
+    }
+  },
+  "wireplumber": {
+    "format": "􀊩",
+    "format-muted": "􀊣",
+    "max-volume": 100,
+    "scroll-step": 5,
+    "tooltip-format": "Sound · {volume}%\n{node_name}\nClick for sound controls · scroll to adjust",
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/menus/sound.xml",
+    "menu-actions": {
+      "mute": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "louder": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+      "quieter": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+      "settings": "pavucontrol"
+    }
+  },
+  "backlight": {
+    "format": "􀆮",
+    "tooltip-format": "Display · {percent}%\nScroll to adjust brightness",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%- -n 5",
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/menus/display.xml",
+    "menu-actions": {
+      "low": "brightnessctl set 25%",
+      "medium": "brightnessctl set 50%",
+      "high": "brightnessctl set 75%",
+      "full": "brightnessctl set 100%"
+    }
+  },
+  "battery": {
+    "format": "{capacity}%  {icon}",
+    "format-charging": "{capacity}%  <span font_size=\"15000\">􀢋</span>",
+    "format-plugged": "{capacity}%  <span font_size=\"15000\">􀢋</span>",
+    "format-full": "<span font_size=\"15000\">􀛨</span>",
+    "format-icons": [
+      "<span font_size=\"15000\">􀛪</span>",
+      "<span font_size=\"15000\">􀛩</span>",
+      "<span font_size=\"15000\">􀺶</span>",
+      "<span font_size=\"15000\">􀺸</span>",
+      "<span font_size=\"15000\">􀛨</span>"
+    ],
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "tooltip-format": "Battery · {capacity}%\n{timeTo}\n{power:.1f} W"
+  },
+  "clock": {
+    "format": "{:%a %e %b  %H:%M}",
+    "format-alt": "{:%H:%M}",
+    "interval": 60,
+    "tooltip-format": "<b>{:%A, %d %B %Y}</b>\n\n<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "format": {
+        "months": "<b>{}</b>",
+        "weekdays": "<span color='#a83f74'><b>{}</b></span>",
+        "today": "<span color='#a83f74'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "custom/control": {
+    "format": "􀜊",
+    "tooltip-format": "Control Center",
+    "on-click-release": "neo-control-center",
+    "exec-on-event": false
+  },
+  "custom/search": {
+    "format": "􀊫",
+    "tooltip-format": "Search applications · Super+Space",
+    "on-click-release": "rofi -show drun",
+    "exec-on-event": false
+  },
+  "custom/notifications": {
+    "exec": "swaync-client -swb",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "",
+      "none": "",
+      "dnd-notification": "",
+      "dnd-none": "",
+      "inhibited-notification": "",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "",
+      "dnd-inhibited-none": ""
+    },
+    "tooltip": true,
+    "on-click-release": "swaync-client -t",
+    "on-click-right-release": "swaync-client -d",
+    "restart-interval": 3,
+    "exec-on-event": false
+  },
+  "custom/island": {
+    "exec": "neo-dynamic-island",
+    "return-type": "json",
+    "format": "{text}",
+    "restart-interval": 3,
+    "exec-on-event": false,
+    "on-click-release": "neo-dynamic-island --action toggle",
+    "on-click-right-release": "neo-dynamic-island --action controls",
+    "on-scroll-up": "neo-dynamic-island --action louder",
+    "on-scroll-down": "neo-dynamic-island --action quieter"
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
+<gui name="dolphin" version="48">
+  <ToolBar noMerge="1" name="mainToolBar" iconSize="20">
+    <text>Main Toolbar</text>
+    <Action name="go_back"/>
+    <Action name="go_forward"/>
+    <Action name="url_navigators"/>
+    <Action name="view_settings"/>
+    <Action name="toggle_search"/>
+    <Action name="hamburger_menu"/>
+  </ToolBar>
+  <ActionProperties scheme="Default">
+    <Action name="go_back" priority="0"/>
+    <Action name="go_forward" priority="0"/>
+    <Action name="view_settings" priority="0"/>
+    <Action name="toggle_search" priority="0"/>
+  </ActionProperties>
+</gui>

@@ -1,0 +1,195 @@
+/* Neo Blush: browser chrome only. Web pages retain their own typography/colors. */
+body, #browser, .vivaldi-settings {
+  font-family: "SF Pro Text", "SF Pro Display", Inter, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+#browser input, #browser button, #browser select, #browser textarea {
+  font-family: inherit;
+}
+#browser {
+  --neo-rim: rgba(255, 255, 255, .68);
+  --neo-shadow: 0 8px 24px rgba(69, 44, 59, .09);
+  --neo-glass: color-mix(in srgb, var(--colorBg, #fff3f9) 82%, transparent);
+  --neo-field: color-mix(in srgb, var(--colorBg, #fff3f9) 76%, white);
+  --neo-hover: color-mix(in srgb, var(--colorHighlightBg, #a83f74) 12%, transparent);
+  --neo-focus: color-mix(in srgb, var(--colorHighlightBg, #a83f74) 65%, transparent);
+  font-size: 13px;
+}
+/* Native theme renders the wallpaper underneath the unified toolbars. */
+#header, .toolbar-mainbar, #panels-container, .toolbar-statusbar {
+  color: var(--colorFg);
+  background-color: var(--neo-glass) !important;
+  backdrop-filter: blur(24px) saturate(1.14);
+  -webkit-backdrop-filter: blur(24px) saturate(1.14);
+}
+.toolbar-mainbar {
+  min-height: 48px;
+  padding: 5px 10px;
+  gap: 4px;
+  border-top: 1px solid rgba(255, 255, 255, .45);
+  border-bottom: 1px solid color-mix(in srgb, var(--colorFg) 9%, transparent);
+  box-shadow: 0 2px 10px rgba(69, 44, 59, .035);
+}
+.UrlBar-AddressField, .UrlBar-SearchField {
+  min-height: 34px;
+  border-radius: 14px !important;
+  color: var(--colorFg);
+  background: var(--neo-field) !important;
+  border: 1px solid var(--neo-rim) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .65), 0 2px 6px rgba(69, 44, 59, .045);
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+.UrlBar-AddressField:focus-within, .UrlBar-SearchField:focus-within {
+  border-color: var(--neo-focus) !important;
+  box-shadow: 0 0 0 3px var(--neo-hover), inset 0 1px 0 rgba(255, 255, 255, .65);
+}
+.UrlBar-UrlField { font-size: 13px; letter-spacing: .01em; }
+.button-toolbar > button {
+  border-radius: 10px !important;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+.button-toolbar > button:hover:not(:disabled) {
+  background-color: var(--neo-hover) !important;
+}
+.button-toolbar > button:active:not(:disabled) {
+  background-color: color-mix(in srgb, var(--colorHighlightBg) 20%, transparent) !important;
+}
+.button-toolbar > button:focus-visible,
+.tab:focus-visible, .speeddial:focus-visible {
+  outline: 2px solid var(--colorHighlightBg) !important;
+  outline-offset: 2px;
+}
+.button-toolbar > button:disabled { opacity: .4; }
+.button-toolbar svg, .button-toolbar img { width: 18px; height: 18px; }
+/* Keep native tab geometry/drag regions; change only the visible surfaces. */
+#tabs-tabbar-container.top { padding-top: 5px; padding-bottom: 4px; }
+.tab-position .tab {
+  border-radius: 12px !important;
+  color: var(--colorFg);
+  background-color: transparent !important;
+  border: 1px solid transparent;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+.tab-position .tab:hover { background-color: var(--neo-hover) !important; }
+.tab-position .tab.active {
+  background-color: var(--neo-field) !important;
+  border-color: var(--neo-rim);
+  box-shadow: 0 2px 8px rgba(69, 44, 59, .08), inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+.tab-position .tab .title { font-size: 12px; font-weight: 500; }
+.tab-position .tab.active .title { font-weight: 600; }
+.tab .close { border-radius: 6px; }
+.tab .close:hover { background: var(--neo-hover); }
+/* Style the real close/minimize/maximize buttons, preserving their actions. */
+.window-buttongroup { gap: 8px; padding: 0 12px; align-items: center; }
+.window-buttongroup button {
+  position: relative;
+  width: 13px !important;
+  min-width: 13px !important;
+  height: 13px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(69, 44, 59, .14) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+.window-buttongroup .window-close { background: #ff615b !important; }
+.window-buttongroup .window-minimize { background: #ffbe30 !important; }
+.window-buttongroup .window-maximize { background: #2acb42 !important; }
+.window-buttongroup button svg {
+  width: 9px !important; height: 9px !important;
+  opacity: 0;
+}
+.window-buttongroup:hover button svg,
+.window-buttongroup button:focus-visible svg { opacity: .8; }
+.window-buttongroup button:focus-visible {
+  outline: 2px solid var(--colorHighlightBg); outline-offset: 3px;
+}
+#panels-container { border-right: 1px solid color-mix(in srgb, var(--colorFg) 8%, transparent); }
+#switch { padding: 7px 3px; }
+#switch .button-toolbar > button { margin: 3px 0; }
+.panel-group {
+  background: var(--neo-glass);
+  color: var(--colorFg);
+  border-radius: 16px;
+  box-shadow: var(--neo-shadow);
+}
+.panel-group .panel { background: transparent; }
+.toolbar-statusbar {
+  min-height: 26px;
+  border-top: 1px solid rgba(255, 255, 255, .4);
+  font-size: 11px;
+}
+/* Popup surfaces stay legible over both wallpaper and dense web content. */
+.OmniDropdown, .urlSearch, .SearchField .search-engines,
+.menu, .dialog, .quick-command-container, .popover {
+  color: var(--colorFg);
+  background: color-mix(in srgb, var(--colorBg) 94%, transparent) !important;
+  border: 1px solid var(--neo-rim) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 16px 42px rgba(69, 44, 59, .17);
+  backdrop-filter: blur(24px);
+}
+.OmniDropdown .omniitem, .quick-command { border-radius: 9px; }
+.OmniDropdown .omniitem.selected, .quick-command[data-selected] {
+  color: var(--colorHighlightFg, #fff7fc) !important;
+  background: var(--colorHighlightBg) !important;
+}
+.OmniDropdown .omniitem.selected *, .quick-command[data-selected] * { color: inherit; }
+.dialog input:not([type=checkbox]):not([type=radio]),
+.vivaldi-settings input:not([type=checkbox]):not([type=radio]),
+.vivaldi-settings select {
+  border-radius: 9px;
+  accent-color: var(--colorHighlightBg, #a83f74);
+}
+input[type=checkbox], input[type=radio], input[type=range] { accent-color: var(--colorHighlightBg, #a83f74); }
+.dialog button { border-radius: 9px; }
+.dialog button:focus-visible { outline: 2px solid var(--colorHighlightBg); outline-offset: 2px; }
+/* Vivaldi's own Start Page retains speed dials, widgets, and keyboard navigation. */
+.startpage-navigation {
+  color: var(--colorFg);
+  background: var(--neo-glass) !important;
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--neo-rim);
+}
+.startpage .speeddial .thumbnail {
+  border-radius: 20px !important;
+  border: 1px solid var(--neo-rim);
+  box-shadow: var(--neo-shadow);
+  overflow: hidden;
+}
+.startpage .speeddial .dial-title {
+  font-family: "SF Pro Text", sans-serif;
+  color: #452c3b;
+  font-size: 13px;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(255, 243, 249, .8);
+}
+.startpage .speeddial:hover .thumbnail {
+  box-shadow: 0 10px 28px rgba(69, 44, 59, .14);
+}
+.startpage .SearchField {
+  border-radius: 18px !important;
+  background: rgba(255, 243, 249, .9) !important;
+  color: #452c3b;
+  border: 1px solid var(--neo-rim);
+  backdrop-filter: blur(24px);
+  box-shadow: var(--neo-shadow);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  #header, .toolbar-mainbar, #panels-container, .toolbar-statusbar,
+  .panel-group, .startpage-navigation { background: var(--colorBg, #fff3f9) !important; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  #browser { --neo-glass: var(--colorBg, #fff3f9); }
+  #header, .toolbar-mainbar, #panels-container, .toolbar-statusbar,
+  .panel-group, .startpage-navigation, .dialog, .OmniDropdown {
+    backdrop-filter: none; background: var(--colorBg, #fff3f9) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #browser *, #browser *::before, #browser *::after { transition: none !important; }
+}
+@media (forced-colors: active) {
+  #browser { --neo-glass: Canvas; --neo-field: Canvas; --neo-rim: CanvasText; }
+  .tab-position .tab.active { border: 1px solid Highlight; }
+  .window-buttongroup button svg { opacity: 1; }
+}

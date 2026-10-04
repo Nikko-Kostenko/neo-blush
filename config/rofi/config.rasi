@@ -1,0 +1,14 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    font: "SF Pro Text 13";
+    icon-theme: "Adwaita";
+    drun-display-format: "{name}";
+    display-drun: "Apps";
+    display-run: "Commands";
+    display-window: "Windows";
+    matching: "fuzzy";
+    sort: true;
+    hide-scrollbar: true;
+}
+@theme "neo-glass.rasi"

@@ -1,0 +1,152 @@
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+
+@define-color theme_fg_color #452c3b;
+@define-color theme_text_color #452c3b;
+@define-color theme_bg_color #fff3f9;
+@define-color theme_base_color #fff8fc;
+@define-color theme_selected_bg_color #edd0e0;
+@define-color theme_selected_fg_color #452c3b;
+@define-color theme_unfocused_selected_bg_color #edd0e0;
+@define-color theme_unfocused_selected_fg_color #452c3b;
+@define-color insensitive_fg_color #9c8895;
+@define-color borders alpha(#a83f74, 0.10);
+
+/* This theme is selected only by the native file-manager launcher. */
+* { font-family: "SF Pro Text", sans-serif; font-size: 14px; }
+/* Override Adwaita's opaque :backdrop surfaces when the window loses focus. */
+window.background, window.background:backdrop {
+  background: rgba(255, 243, 249, 0.32);
+  color: #452c3b;
+}
+.thunar grid, .thunar grid:backdrop,
+.thunar box, .thunar box:backdrop,
+.thunar paned, .thunar paned:backdrop,
+.thunar viewport, .thunar viewport:backdrop,
+.thunar scrolledwindow, .thunar scrolledwindow:backdrop,
+.thunar notebook, .thunar notebook:backdrop,
+.thunar stack, .thunar stack:backdrop {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.thunar toolbar, .thunar toolbar:backdrop {
+  background: rgba(255, 243, 249, 0.22);
+  padding: 10px 12px;
+  border: none;
+  box-shadow: none;
+}
+.thunar toolbar button, .thunar toolbar button:backdrop,
+.thunar .path-bar button, .thunar .path-bar button:backdrop {
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  padding: 7px 9px;
+  color: #65535f;
+}
+.thunar button:hover, .thunar button:backdrop:hover {
+  background: rgba(255, 248, 252, 0.65);
+  color: #452c3b;
+}
+.thunar button:checked, .thunar button:backdrop:checked,
+.thunar button:active, .thunar button:backdrop:active {
+  background: rgba(237, 208, 224, 0.80);
+  color: #452c3b;
+}
+.thunar button:disabled, .thunar button:backdrop:disabled { color: #a7949f; }
+.thunar entry, .thunar entry:backdrop {
+  background: rgba(255, 248, 252, 0.65);
+  border: 1px solid rgba(168, 63, 116, 0.12);
+  border-radius: 12px;
+  box-shadow: none;
+  color: #452c3b;
+  padding: 7px 10px;
+}
+.thunar entry:focus { border-color: rgba(168, 63, 116, 0.42); }
+.thunar paned > separator, .thunar paned > separator:backdrop {
+  background: transparent;
+  min-width: 12px;
+}
+/* Leave navigation glassy; give the file area a quiet rounded surface. */
+.thunar treeview.view, .thunar treeview.view:backdrop {
+  background: transparent;
+  color: #452c3b;
+  -GtkTreeView-vertical-separator: 10;
+  -GtkTreeView-horizontal-separator: 10;
+}
+.thunar treeview.view:selected, .thunar treeview.view:backdrop:selected {
+  background: rgba(237, 208, 224, 0.72);
+  color: #452c3b;
+  border-radius: 10px;
+}
+.thunar treeview.view:hover, .thunar treeview.view:backdrop:hover {
+  background-color: rgba(255, 248, 252, 0.35);
+}
+.thunar .standard-view .view, .thunar .standard-view .view:backdrop {
+  background: rgba(255, 248, 252, 0.83);
+  border-radius: 18px;
+  padding: 10px;
+  color: #452c3b;
+}
+.thunar .standard-view .view.cell, .thunar .standard-view .view.cell:backdrop {
+  background: transparent;
+  border-radius: 14px;
+}
+.thunar .standard-view .view:selected,
+.thunar .standard-view .view:backdrop:selected {
+  background: rgba(231, 192, 215, 0.85);
+  border-radius: 14px;
+  color: #452c3b;
+}
+.thunar .standard-view .view.cell:hover,
+.thunar .standard-view .view.cell:backdrop:hover {
+  background: rgba(244, 218, 233, 0.65);
+  border-radius: 14px;
+}
+.thunar .standard-view .view:focus, .thunar treeview.view:focus {
+  outline-style: none;
+}
+.thunar notebook header, .thunar notebook header:backdrop {
+  background: transparent;
+  border: none;
+  padding: 2px 6px 8px;
+}
+.thunar notebook tab, .thunar notebook tab:backdrop {
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  box-shadow: none;
+  margin: 0 3px;
+  padding: 6px 12px;
+  color: #76636f;
+}
+.thunar notebook tab:checked, .thunar notebook tab:backdrop:checked {
+  background: rgba(255, 248, 252, 0.64);
+  color: #452c3b;
+}
+.thunar statusbar, .thunar statusbar:backdrop { background: transparent; padding: 8px 12px; }
+.thunar statusbar label, .thunar statusbar label:backdrop { color: #76636f; font-size: 12px; }
+scrollbar, scrollbar:backdrop { background: transparent; border: none; }
+scrollbar slider, scrollbar slider:backdrop {
+  background: rgba(118, 99, 111, 0.30);
+  border: none;
+  border-radius: 8px;
+  min-width: 5px;
+  min-height: 5px;
+}
+scrollbar slider:hover, scrollbar slider:backdrop:hover { background: rgba(118, 99, 111, 0.50); }
+/* App menus share the same material and readable hover colours. */
+menu {
+  background: rgba(255, 243, 249, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  border-radius: 16px;
+  padding: 7px;
+  color: #452c3b;
+}
+menuitem { border-radius: 9px; padding: 6px 10px; }
+menuitem:hover, menuitem:hover label, menuitem:hover image {
+  background-color: #edd0e0;
+  color: #452c3b;
+}
+menuitem:disabled, menuitem:disabled label { color: #9c8895; }
+separator { background: rgba(168, 63, 116, 0.10); }

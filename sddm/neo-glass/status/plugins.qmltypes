@@ -1,0 +1,18 @@
+import QtQuick.tooling 1.2
+
+Module {
+    Component {
+        name: "DeviceStatus"
+        prototype: "QObject"
+        exports: ["NeoStatus/DeviceStatus 1.0"]
+        exportMetaObjectRevisions: [256]
+        Property { name: "wifiAvailable"; type: "bool" }
+        Property { name: "wifiEnabled"; type: "bool" }
+        Property { name: "wifiConnected"; type: "bool" }
+        Property { name: "wifiStrength"; type: "int" }
+        Property { name: "batteryAvailable"; type: "bool" }
+        Property { name: "batteryPercent"; type: "int" }
+        Property { name: "batteryCharging"; type: "bool" }
+        Signal { name: "changed" }
+    }
+}

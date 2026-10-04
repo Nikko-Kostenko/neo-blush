@@ -1,0 +1,92 @@
+--- a/include/modules/sni/item.hpp
++++ b/include/modules/sni/item.hpp
+@@ -86,6 +86,9 @@
+   gdouble distance_scrolled_y_ = 0;
+   // visibility of items with Status == Passive
+   bool show_passive_ = false;
++  bool menu_below_ = false;
++  std::set<std::string> menu_on_left_click_ids_;
++  std::string custom_icon_id_;
+ 
+   const Bar& bar_;
+ 
+--- a/src/modules/sni/item.cpp
++++ b/src/modules/sni/item.cpp
+@@ -52,6 +52,13 @@
+   }
+   if (config["show-passive-items"].isBool()) {
+     show_passive_ = config["show-passive-items"].asBool();
++  }
++
++  menu_below_ = config["menu-position"].asString() == "below";
++  if (config["menu-on-left-click"].isArray()) {
++    for (const auto& value : config["menu-on-left-click"]) {
++      if (value.isString()) menu_on_left_click_ids_.insert(value.asString());
++    }
+   }
+ 
+   auto& window = const_cast<Bar&>(bar).window;
+@@ -232,22 +239,7 @@
+ }
+ 
+ void Item::setCustomIcon(const std::string& id) {
+-  spdlog::debug("SNI tray id: {}", id);
+-
+-  std::string custom_icon = IconManager::instance().getIconForApp(id);
+-  if (!custom_icon.empty()) {
+-    if (std::filesystem::exists(custom_icon)) {
+-      try {
+-        Glib::RefPtr<Gdk::Pixbuf> custom_pixbuf = Gdk::Pixbuf::create_from_file(custom_icon);
+-        icon_name = "";  // icon_name has priority over pixmap
+-        icon_pixmap = custom_pixbuf;
+-      } catch (const Glib::Error& e) {
+-        spdlog::error("Failed to load custom icon {}: {}", custom_icon, e.what());
+-      }
+-    } else {  // if file doesn't exist it's most likely an icon_name
+-      icon_name = custom_icon;
+-    }
+-  }
++  custom_icon_id_ = id;
+ }
+ 
+ void Item::getUpdatedProperties() {
+@@ -382,6 +374,19 @@
+ }
+ 
+ Glib::RefPtr<Gdk::Pixbuf> Item::getIconPixbuf() {
++  const auto& key = custom_icon_id_.empty() ? id : custom_icon_id_;
++  auto custom_icon = IconManager::instance().getIconForApp(key + ":" + icon_name);
++  if (custom_icon.empty()) custom_icon = IconManager::instance().getIconForApp(key);
++  if (!custom_icon.empty()) {
++    try {
++      if (std::filesystem::exists(custom_icon)) {
++        return Gdk::Pixbuf::create_from_file(custom_icon);
++      }
++      return getIconByName(custom_icon, getScaledIconSize());
++    } catch (const Glib::Error& error) {
++      spdlog::warn("Custom tray icon '{}': {}", key, error.what());
++    }
++  }
+   if (!icon_name.empty()) {
+     try {
+       std::ifstream temp(icon_name);
+@@ -467,11 +472,17 @@
+   auto parameters = Glib::VariantContainerBase::create_tuple(
+       {Glib::Variant<int>::create(ev->x_root + bar_.x_global),
+        Glib::Variant<int>::create(ev->y_root + bar_.y_global)});
+-  if ((ev->button == 1 && item_is_menu) || ev->button == 3) {
++  if ((ev->button == 1 && (item_is_menu || menu_on_left_click_ids_.count(id))) || ev->button == 3) {
+     makeMenu();
+     if (gtk_menu != nullptr) {
+ #if GTK_CHECK_VERSION(3, 22, 0)
+-      gtk_menu->popup_at_pointer(reinterpret_cast<GdkEvent*>(ev));
++      if (menu_below_ && bar_.position == Gtk::POS_TOP) {
++        gtk_menu_popup_at_widget(GTK_MENU(gtk_menu->gobj()), GTK_WIDGET(event_box.gobj()),
++                                 GDK_GRAVITY_SOUTH_EAST, GDK_GRAVITY_NORTH_EAST,
++                                 reinterpret_cast<GdkEvent*>(ev));
++      } else {
++        gtk_menu->popup_at_pointer(reinterpret_cast<GdkEvent*>(ev));
++      }
+ #else
+       gtk_menu->popup(ev->button, ev->time);
+ #endif

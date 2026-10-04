@@ -1,0 +1,19 @@
+# Local credentials and private keys.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+/dotfiles
+/id_rsa
+/id_ed25519
+
+# Build output, caches, and optional local font assets.
+/result
+/result-*
+__pycache__/
+*.py[cod]
+*.dmg
+*.otf
+*.ttf
+*.ttc

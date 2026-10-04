@@ -1,0 +1,31 @@
+/* Native Chromium/GTK surfaces, scoped to the Vivaldi launcher. */
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+@define-color theme_bg_color #fff3f9;
+@define-color theme_base_color #fffbfe;
+@define-color theme_fg_color #452c3b;
+@define-color theme_text_color #452c3b;
+@define-color theme_selected_bg_color #a83f74;
+@define-color theme_selected_fg_color #fff7fc;
+@define-color borders #ead5e2;
+* { font-family: "SF Pro Text", sans-serif; }
+window, dialog, .background { color: @theme_fg_color; background-color: @theme_bg_color; }
+menu, .menu, popover {
+  color: @theme_fg_color;
+  background-color: @theme_bg_color;
+  border: 1px solid @borders;
+  border-radius: 14px;
+  padding: 6px;
+}
+menuitem {
+  padding: 6px 12px;
+  border-radius: 7px;
+  background-color: @theme_bg_color;
+}
+menuitem label, menuitem image { color: @theme_fg_color; }
+menuitem:hover { background-color: @theme_selected_bg_color; color: @theme_selected_fg_color; }
+menuitem:hover label, menuitem:hover image { color: @theme_selected_fg_color; }
+menuitem:disabled, menuitem:disabled label, menuitem:disabled image { color: #a992a2; }
+entry { background-color: @theme_base_color; color: @theme_text_color; border-radius: 10px; }
+entry:focus { border-color: @theme_selected_bg_color; }
+selection { background-color: @theme_selected_bg_color; color: @theme_selected_fg_color; }
+separator { background-color: @borders; min-height: 1px; }

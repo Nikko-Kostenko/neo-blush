@@ -1,0 +1,55 @@
+@define-color text #452c3b;
+@define-color muted #87697c;
+@define-color accent #a83f74;
+@define-color noti-bg rgba(255, 243, 249, 0.95);
+@define-color noti-bg-hover #ffe5f2;
+@define-color noti-bg-focus #ffe5f2;
+@define-color noti-border-color rgba(168, 63, 116, 0.18);
+@define-color noti-close-bg #f3d5e5;
+@define-color noti-close-bg-hover #e9b6d0;
+@define-color noti-bg-darker #f5deeb;
+@define-color noti-bg-opaque #fff3f9;
+@define-color bg-selected #a83f74;
+
+* {
+  font-family: "SF Pro Text", "Inter", sans-serif;
+  font-size: 13px;
+}
+.control-center {
+  color: @text;
+  background: rgba(250, 234, 243, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 24px;
+  padding: 12px;
+}
+.notification {
+  color: @text;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
+  border-radius: 16px;
+  padding: 8px;
+}
+.notification-row { margin: 4px; }
+.notification-default-action, .notification-action {
+  color: @text;
+  background: transparent;
+  border-radius: 12px;
+}
+.notification-default-action:hover, .notification-action:hover {
+  background: @noti-bg-hover;
+}
+.notification-action:focus, .notification-default-action:focus,
+button:focus-visible {
+  outline: 2px solid @accent;
+  outline-offset: -2px;
+}
+.summary { color: @text; font-weight: 600; font-size: 14px; }
+.body { color: @text; }
+.time { color: @muted; }
+.close-button { color: @text; background: @noti-close-bg; border-radius: 50%; }
+.close-button:hover { background: @noti-close-bg-hover; }
+.widget-title { color: @text; font-weight: 600; margin: 4px 6px 10px; }
+.widget-title > button { color: @accent; border-radius: 10px; }
+.widget-dnd { color: @text; margin: 4px 6px 12px; }
+.widget-dnd > switch:checked { background: @accent; }
+.notification.critical { border-color: #b03957; }

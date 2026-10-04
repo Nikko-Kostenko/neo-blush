@@ -1,0 +1,11 @@
+[SddmGreeterTheme]
+Name=Neo Blush Glass
+Description=A macOS-inspired pink login screen with a floating clock and click-to-reveal password.
+Author=Nikko-Kostenko
+License=MIT
+Type=sddm-theme
+Version=1.1
+MainScript=Main.qml
+ConfigFile=theme.conf
+QtVersion=6
+X-SDDM-Theme-InterfaceVersion=2

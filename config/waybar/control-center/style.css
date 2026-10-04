@@ -1,0 +1,116 @@
+@define-color ink #452c3b;
+@define-color muted #76636f;
+@define-color accent #a83f74;
+
+* {
+  font-family: "SF Pro Text", "SF Pro Display", "Inter", sans-serif;
+  font-size: 12px;
+  color: @ink;
+  -gtk-icon-shadow: none;
+}
+window, .panel {
+  background: transparent;
+  background-image: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+button {
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+  transition: background-color 100ms ease;
+}
+.glass {
+  border: 1px solid rgba(255, 249, 253, 0.52);
+  border-top-color: rgba(255, 255, 255, 0.72);
+  border-bottom-color: rgba(112, 82, 101, 0.16);
+  background: linear-gradient(155deg, rgba(255, 250, 253, 0.50), rgba(255, 242, 249, 0.28) 58%, rgba(252, 235, 245, 0.36));
+  border-radius: 30px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.36), 0 3px 8px rgba(57, 35, 48, 0.08);
+}
+.title { font-size: 13px; font-weight: 500; }
+.subtitle { font-size: 11px; color: @muted; }
+.connection-capsule { padding: 10px 12px; border-radius: 40px; }
+.radio-glyph, .toggle-glyph {
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(174, 107, 144, 0.12);
+}
+.radio-glyph.active { background: rgba(168, 63, 116, 0.86); }
+.radio-glyph.active image { color: #fff8fc; }
+.connection-capsule:hover { background: linear-gradient(155deg, rgba(255, 252, 254, 0.62), rgba(255, 242, 249, 0.40)); }
+.connection-capsule:hover .radio-glyph.active { background: rgba(168, 63, 116, 0.96); }
+.media-tile { padding: 14px 13px 10px; border-radius: 30px; }
+.album-art {
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 11px;
+  background: rgba(151, 103, 134, 0.09);
+}
+.album-art image { color: rgba(111, 71, 95, 0.38); }
+.media-button {
+  min-height: 22px;
+  min-width: 22px;
+  padding: 1px;
+  background: transparent;
+  border-radius: 8px;
+}
+.media-button:hover { background: rgba(168, 63, 116, 0.10); }
+.awake-capsule { padding: 10px 12px; border-radius: 40px; }
+.awake-capsule.active .toggle-glyph { background: white; }
+.awake-capsule.active .toggle-glyph image { color: @accent; }
+.awake-capsule:hover, .round-control:hover {
+  background: linear-gradient(155deg, rgba(255, 252, 254, 0.62), rgba(255, 242, 249, 0.40));
+}
+.round-control {
+  min-width: 64px;
+  min-height: 64px;
+  padding: 0;
+  border-radius: 50%;
+}
+.round-control image { -gtk-icon-transform: none; }
+.microphone.active { background: rgba(181, 56, 81, 0.76); }
+.microphone.active image { color: #fff8fb; }
+.slider-capsule { padding: 10px 15px; border-radius: 30px; }
+.slider-icon { min-width: 16px; min-height: 18px; padding: 0; background: transparent; }
+.output-button {
+  min-width: 26px;
+  min-height: 26px;
+  padding: 0;
+  background: rgba(174, 107, 144, 0.14);
+  border-radius: 50%;
+}
+.output-button:hover { background: rgba(168, 63, 116, 0.22); }
+scale { padding: 8px 0; }
+scale trough {
+  min-height: 7px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(135, 87, 113, 0.17);
+  box-shadow: none;
+}
+scale highlight {
+  min-height: 7px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(168, 63, 116, 0.78);
+}
+scale slider {
+  min-width: 4px;
+  min-height: 7px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+button:disabled, scale:disabled { opacity: 0.40; }
+.status-capsule { padding: 6px 12px; border-radius: 20px; }
+.battery-label { font-size: 10px; }
+.error { padding: 10px 14px; color: #ad304c; font-size: 11px; }
+button:focus, scale:focus { outline: 2px solid rgba(168, 63, 116, 0.66); outline-offset: -3px; }
+tooltip { background: #fff3f9; border: 1px solid rgba(168, 63, 116, 0.20); border-radius: 10px; }

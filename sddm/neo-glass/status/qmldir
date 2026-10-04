@@ -1,0 +1,3 @@
+module NeoStatus
+plugin neostatus
+typeinfo plugins.qmltypes

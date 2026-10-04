@@ -1,0 +1,4 @@
+/* Reserve enough space for Finder-style sidebar labels on narrow tiled windows. */
+DolphinDockWidget#placesDock {
+    min-width: 190px;
+}
