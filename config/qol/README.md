@@ -27,6 +27,10 @@ cards, a compact Do Not Disturb switch, and an explicit empty state. Long lists
 scroll within the available monitor height. Critical notifications retain a
 distinct red border.
 
+Its 16px outer margins match Hyprland's tiled-window gutter, aligning the top
+and right edges with ordinary windows. Layer shell already accounts for the
+menu bar's reserved space; the top margin does not add the bar's height again.
+
 Notifications from the same application form a stack. Use Up/Down or Home/End
 to navigate, Enter to expand a stack, Delete to dismiss, and Escape to close the
 panel. Keys 1–9 invoke available actions; Shift+C clears the list and Shift+D
