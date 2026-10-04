@@ -22,7 +22,7 @@
   "keyboard-shortcuts": true,
   "notification-grouping": true,
   "hide-on-action": true,
-  "widgets": ["title", "dnd", "notifications"],
+  "widgets": ["title", "dnd", "notifications", "buttons-grid#settings"],
   "widget-config": {
     "title": {"text": "Notification Center", "clear-all-button": true, "button-text": "Clear All"},
     "dnd": {"text": "Do Not Disturb"},

@@ -117,6 +117,24 @@
   padding: 0;
 }
 
+.control-center .widget-buttons-grid {
+  margin: 10px 4px 0;
+  padding: 0;
+  background: transparent;
+}
+
+.widget-buttons-grid button {
+  color: #795468;
+  background: rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(94, 57, 78, 0.06);
+  border-radius: 12px;
+  min-height: 32px;
+  font-size: 12px;
+  box-shadow: none;
+}
+
+.widget-buttons-grid button:hover { background: var(--noti-bg-hover); }
+
 .control-center .control-center-list-placeholder {
   opacity: 1;
   min-height: 150px;

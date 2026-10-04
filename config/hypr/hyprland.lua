@@ -417,5 +417,12 @@ hl.window_rule({
     center = true,
 })
 
+hl.window_rule({
+    name = "notification-settings",
+    match = { class = "^neo-notification-settings$" },
+    float = true,
+    center = true,
+})
+
 require("hyprglass")
 require("dynamic-cursors")

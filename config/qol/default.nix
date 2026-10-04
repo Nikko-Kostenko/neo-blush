@@ -8,8 +8,10 @@ let
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   loginctl = "${pkgs.systemd}/bin/loginctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  notificationSettings = pkgs.callPackage ./notification-settings/package.nix { };
+  notificationConfig = builtins.fromJSON (builtins.readFile ./notifications.json);
 in {
-  home.packages = [ clipboard ] ++ (with pkgs; [
+  home.packages = [ clipboard notificationSettings ] ++ (with pkgs; [
     # SwayNC's empty-state and symbolic controls need a real fallback icon theme.
     adwaita-icon-theme
     wl-clipboard
@@ -41,8 +43,47 @@ in {
 
   services.swaync = {
     enable = true;
-    settings = builtins.fromJSON (builtins.readFile ./notifications.json);
+    settings = notificationConfig // {
+      widget-config = notificationConfig.widget-config // {
+        "buttons-grid#settings" = {
+          buttons-per-row = 1;
+          actions = [ {
+            label = "Notification Settings…";
+            command = "${notificationSettings}/bin/neo-notification-settings";
+          } ];
+        };
+      };
+    };
     style = ./notifications.css;
+  };
+
+  # Home Manager owns the base config; interactive choices live outside the
+  # store and are composed again before every SwayNC start.
+  systemd.user.services.swaync.Service = {
+    ExecStartPre = [ "${notificationSettings}/bin/neo-notification-settings --apply" ];
+    ExecStart = lib.mkForce [ "${pkgs.swaynotificationcenter}/bin/swaync --config %t/neo-notifications/config.json" ];
+  };
+  systemd.user.services.neo-notification-discovery = {
+    Unit = {
+      Description = "Discover applications that send desktop notifications";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+    Service = {
+      ExecStart = "${notificationSettings}/bin/neo-notification-settings --monitor";
+      Restart = "on-failure";
+      RestartSec = 3;
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+  xdg.desktopEntries.neo-notification-settings = {
+    name = "Notification Settings";
+    comment = "Choose which applications can notify you";
+    exec = "${notificationSettings}/bin/neo-notification-settings";
+    icon = "preferences-system-notifications";
+    categories = [ "Settings" "DesktopSettings" ];
+    terminal = false;
   };
 
   services.hypridle = {

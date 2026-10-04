@@ -36,6 +36,28 @@ to navigate, Enter to expand a stack, Delete to dismiss, and Escape to close the
 panel. Keys 1–9 invoke available actions; Shift+C clears the list and Shift+D
 toggles Do Not Disturb. The matching buttons support mouse use.
 
+Choose **Notification Settings…** at the bottom of the center, or launch
+**Notification Settings** from the app launcher. Set each app to **Show**
+(popups and center), **Quiet** (center only), **Block** (hide), or **Use default**.
+Default delivery controls apps without a specific choice; choosing Block as the
+default allows only apps explicitly set to Show or Quiet, subject to configured
+rules. Do Not Disturb remains a separate temporary pause for popups.
+
+Applications appear automatically as they send notifications, including blocked
+senders. Search the list or use **Add App…** with an exact sender name. Changes
+save and apply immediately to new notifications; existing cards remain until
+dismissed. Preferences survive rebuilds and login sessions, in
+`$XDG_STATE_HOME/neo-notifications/preferences.json` (normally
+`~/.local/state/neo-notifications/preferences.json`). The discovery service stores
+only app names and desktop-entry identifiers, never message contents.
+
+The Home Manager config remains the base. Specific interactive choices take
+precedence over its `notification-visibility` rules; **Use default** restores
+those rules and the chosen default delivery. A generated config under
+`$XDG_RUNTIME_DIR/neo-notifications/` is loaded by SwayNC and regenerated before
+each start, so theme updates preserve personal choices. If SwayNC is unavailable,
+the window reports that settings are saved and offers an apply-again button.
+
 Edit `notifications.css` for appearance and `notifications.json` for layout.
 The CSS targets SwayNC 0.12's GTK 4 variables so headings, timestamps, buttons,
 and grouped notifications inherit legible colors. Adwaita icons supply the

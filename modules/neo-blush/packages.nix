@@ -5,6 +5,7 @@ let
 in
 {
   neo-screenshot = import ../../config/neo/screenshot.nix { inherit pkgs; };
+  neo-notification-settings = pkgs.callPackage ../../config/qol/notification-settings/package.nix { };
   vivaldi-neo = (import ../../config/vivaldi/package.nix { inherit pkgs; }).package;
   vivaldi-neo-asset-tools = pkgs.python3.withPackages (ps: [ ps.fonttools ]);
   neo-files = pkgs.callPackage ../../config/files/package.nix { };

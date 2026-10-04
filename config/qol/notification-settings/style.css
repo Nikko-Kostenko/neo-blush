@@ -1,0 +1,69 @@
+.neo-notification-settings {
+  background: #fff3f9;
+  color: #452c3b;
+  font-family: "SF Pro Text", "Inter", sans-serif;
+  font-size: 13px;
+  /* Hyprland owns the 24px outer curve, including its rounding power.
+     GTK must not carve a second, differently shaped curve inside it. */
+  border-radius: 0;
+}
+.neo-notification-settings decoration {
+  border-radius: 0;
+  box-shadow: none;
+}
+.neo-notification-settings headerbar {
+  background: #f5e8f0;
+  color: #452c3b;
+  border-bottom: 1px solid rgba(94, 57, 78, 0.09);
+  box-shadow: none;
+  border-radius: 0;
+  padding: 6px 12px;
+}
+.neo-notification-settings .intro { font-size: 17px; font-weight: 600; }
+.neo-notification-settings .row-title { font-weight: 500; }
+.neo-notification-settings .secondary { color: #78606f; font-size: 12px; }
+.neo-notification-settings .section-label { color: #78606f; font-size: 11px; font-weight: 600; }
+.neo-notification-settings .setting-row {
+  padding: 14px;
+  background: #fffafd;
+  border: 1px solid rgba(94, 57, 78, 0.08);
+  border-radius: 14px;
+}
+.neo-notification-settings .application-row {
+  padding: 12px;
+  background: #fffafd;
+  border-bottom: 1px solid rgba(94, 57, 78, 0.06);
+}
+.neo-notification-settings .application-row.first { border-radius: 16px 16px 0 0; }
+.neo-notification-settings .application-row.last { border-radius: 0 0 16px 16px; border-bottom: none; }
+.neo-notification-settings .application-row.first.last { border-radius: 16px; }
+.neo-notification-settings button, .neo-notification-settings entry {
+  color: #452c3b;
+  background: #fffafd;
+  border: 1px solid rgba(94, 57, 78, 0.14);
+  border-radius: 10px;
+  box-shadow: none;
+  text-shadow: none;
+  min-height: 28px;
+}
+.neo-notification-settings button:hover { background: #f5e6ef; }
+.neo-notification-settings headerbar button.titlebutton {
+  border: none;
+  border-radius: 50%;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
+  background: rgba(94, 57, 78, 0.08);
+}
+.neo-notification-settings headerbar button.titlebutton:hover {
+  background: rgba(94, 57, 78, 0.16);
+}
+.neo-notification-settings button:focus, .neo-notification-settings entry:focus {
+  border-color: #a83f74;
+  outline: 2px solid rgba(168, 63, 116, 0.22);
+  outline-offset: -2px;
+}
+.neo-notification-settings switch { background: #d5c5cf; border-radius: 20px; }
+.neo-notification-settings switch:checked { background: #a83f74; }
+.neo-notification-settings switch slider { background: #fffafd; border-radius: 50%; }
+.neo-notification-settings scrollbar slider { background: rgba(121, 84, 104, 0.3); border-radius: 8px; }
