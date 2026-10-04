@@ -10,6 +10,8 @@ let
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
 in {
   home.packages = [ clipboard ] ++ (with pkgs; [
+    # SwayNC's empty-state and symbolic controls need a real fallback icon theme.
+    adwaita-icon-theme
     wl-clipboard
     libnotify
     satty

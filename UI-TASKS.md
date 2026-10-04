@@ -53,7 +53,7 @@ These are the starting point. The checks below still need to be completed.
   Keep session prompts and confirmation messages visible.
 - [ ] Polish Kitty tabs, padding, cursor, selection, and ANSI contrast.
   Preserve monospaced terminal columns and working native tab controls.
-- [ ] Give notifications the same typography, spacing, and material.
+- [x] Give notifications the same typography, spacing, and material.
   Verify actions, dismissal, long text, and Do Not Disturb behavior.
 
 ## Priority 3 — extend the theme and verify the whole experience

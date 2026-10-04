@@ -18,6 +18,28 @@ Hyprland.
 | Super+Shift+A | Capture an area and annotate it in Satty |
 
 The menu bar bell opens notifications; right-click toggles Do Not Disturb.
+
+## Notification Center
+
+The SwayNC panel floats below the menu bar and sizes to its content instead of
+stretching across the screen. It uses a softly tinted surface, plum text, quiet
+cards, a compact Do Not Disturb switch, and an explicit empty state. Long lists
+scroll within the available monitor height. Critical notifications retain a
+distinct red border.
+
+Notifications from the same application form a stack. Use Up/Down or Home/End
+to navigate, Enter to expand a stack, Delete to dismiss, and Escape to close the
+panel. Keys 1–9 invoke available actions; Shift+C clears the list and Shift+D
+toggles Do Not Disturb. The matching buttons support mouse use.
+
+Edit `notifications.css` for appearance and `notifications.json` for layout.
+The CSS targets SwayNC 0.12's GTK 4 variables so headings, timestamps, buttons,
+and grouped notifications inherit legible colors. Adwaita icons supply the
+symbolic fallback, including the empty-state bell. Hyprland supplies background
+blur; the high-opacity surface also keeps text readable without blur.
+
+## Other desktop conveniences
+
 Clipboard history retains up to 200 items. Run `neo-clipboard clear` to clear it
 after confirmation.
 

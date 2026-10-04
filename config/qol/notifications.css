@@ -1,55 +1,239 @@
-@define-color text #452c3b;
-@define-color muted #87697c;
-@define-color accent #a83f74;
-@define-color noti-bg rgba(255, 243, 249, 0.95);
-@define-color noti-bg-hover #ffe5f2;
-@define-color noti-bg-focus #ffe5f2;
-@define-color noti-border-color rgba(168, 63, 116, 0.18);
-@define-color noti-close-bg #f3d5e5;
-@define-color noti-close-bg-hover #e9b6d0;
-@define-color noti-bg-darker #f5deeb;
-@define-color noti-bg-opaque #fff3f9;
-@define-color bg-selected #a83f74;
+/* SwayNC 0.12 / GTK 4: inherited widgets share the same readable palette. */
+:root {
+  --cc-bg: rgba(250, 240, 246, 0.88);
+  --noti-bg: 255, 249, 252;
+  --noti-bg-alpha: 0.94;
+  --noti-bg-darker: #f1e5ed;
+  --noti-bg-hover: #f5e6ef;
+  --noti-bg-focus: rgba(168, 63, 116, 0.10);
+  --noti-border-color: rgba(94, 57, 78, 0.09);
+  --noti-close-bg: rgba(94, 57, 78, 0.08);
+  --noti-close-bg-hover: rgba(94, 57, 78, 0.16);
+  --text-color: #452c3b;
+  --text-color-disabled: #806b78;
+  --bg-selected: #a83f74;
+  --border-radius: 16px;
+  --notification-icon-size: 40px;
+  --notification-app-icon-size: 16px;
+  --notification-group-icon-size: 20px;
+  --font-size-summary: 14px;
+  --font-size-body: 13px;
+  --notification-shadow: 0 2px 5px rgba(69, 44, 59, 0.06);
+  --hover-transition: background 140ms ease-out;
+  --hover-tranistion: var(--hover-transition);
+  --group-collapse-transition: opacity 160ms ease-out;
+  --group-collapse-tranistion: var(--group-collapse-transition);
+}
 
 * {
   font-family: "SF Pro Text", "Inter", sans-serif;
   font-size: 13px;
+  text-shadow: none;
 }
+
 .control-center {
-  color: @text;
-  background: rgba(250, 234, 243, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: var(--text-color);
+  background: var(--cc-bg);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 24px;
+  padding: 16px 12px 12px;
+  box-shadow: 0 8px 28px rgba(69, 44, 59, 0.14);
+}
+
+.control-center .widget-title {
+  margin: 0 8px 16px;
+  padding: 0;
+}
+
+.widget-title > label {
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+.widget-title > button {
+  color: #795468;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(94, 57, 78, 0.08);
+  border-radius: 10px;
+  min-height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.widget-title > button:hover {
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.widget-title > button:disabled {
+  color: #927c89;
+  background: rgba(255, 255, 255, 0.20);
+  border-color: transparent;
+}
+
+.control-center .widget-dnd {
+  margin: 0 4px 10px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(94, 57, 78, 0.06);
+  border-radius: 14px;
+}
+
+.widget-dnd label {
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.widget-dnd switch {
+  background: #d5c5cf;
+  border: none;
+  border-radius: 20px;
+  min-width: 40px;
+  min-height: 22px;
+  padding: 2px;
+  box-shadow: none;
+}
+
+.widget-dnd switch:checked {
+  background: var(--bg-selected);
+}
+
+.widget-dnd switch slider {
+  background: #fffafd;
+  border: none;
+  border-radius: 50%;
+  min-width: 18px;
+  min-height: 18px;
+  box-shadow: 0 1px 3px rgba(69, 44, 59, 0.18);
+}
+
+.control-center .widget-notifications {
+  margin: 0;
+  padding: 0;
+}
+
+.control-center .control-center-list-placeholder {
+  opacity: 1;
+  min-height: 150px;
   padding: 12px;
+  color: #806b78;
 }
-.notification {
-  color: @text;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  border-radius: 16px;
-  padding: 8px;
+
+.control-center-list-placeholder image {
+  /* SwayNC explicitly requests 96px; scale the glyph without patching its UI. */
+  -gtk-icon-transform: scale(0.42);
+  color: #a48297;
+  margin: -20px 0;
 }
-.notification-row { margin: 4px; }
-.notification-default-action, .notification-action {
-  color: @text;
+
+.control-center-list-placeholder label {
+  color: #806b78;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.notification-row .notification-background {
+  padding: 5px 4px;
+}
+
+.notification-row .notification-background .notification .notification-default-action {
+  padding: 10px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+  font-weight: 600;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+  color: #806b78;
+  font-size: 11px;
+  font-weight: 400;
+  margin-right: 22px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+  color: #6d5262;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .image {
+  border-radius: 10px;
+  margin: 2px 10px 2px 0;
+}
+
+.notification-row .notification-background .notification .notification-alt-actions {
+  border-top: 1px solid rgba(94, 57, 78, 0.08);
+  padding: 4px;
+}
+
+.notification-action > button {
+  color: var(--text-color);
   background: transparent;
-  border-radius: 12px;
+  border: none;
+  min-height: 28px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: none;
 }
-.notification-default-action:hover, .notification-action:hover {
-  background: @noti-bg-hover;
+
+.notification-action > button:hover {
+  background: var(--noti-bg-hover);
 }
-.notification-action:focus, .notification-default-action:focus,
-button:focus-visible {
-  outline: 2px solid @accent;
+
+.notification-group .notification-group-headers {
+  margin: 8px 8px 2px;
+}
+
+.notification-group .notification-group-header {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.notification-group .notification-group-buttons {
+  margin: 4px 8px;
+}
+
+.notification-group .notification-group-buttons button {
+  color: #795468;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  border-radius: 10px;
+  min-height: 28px;
+  font-size: 12px;
+  box-shadow: none;
+}
+
+.notification-group .notification-group-buttons button:hover {
+  background: var(--noti-bg-hover);
+}
+
+.close-button {
+  min-width: 22px;
+  min-height: 22px;
+}
+
+.control-center scrollbar slider {
+  background: rgba(121, 84, 104, 0.30);
+  border-radius: 8px;
+  min-width: 4px;
+}
+
+.control-center scrollbar slider:hover {
+  background: rgba(121, 84, 104, 0.50);
+}
+
+.notification-row .notification-background .notification.critical {
+  border-color: rgba(176, 57, 87, 0.55);
+}
+
+.notification-default-action:focus-visible,
+button:focus-visible,
+switch:focus-visible,
+.notification-group:focus-visible {
+  outline: 2px solid var(--bg-selected);
   outline-offset: -2px;
 }
-.summary { color: @text; font-weight: 600; font-size: 14px; }
-.body { color: @text; }
-.time { color: @muted; }
-.close-button { color: @text; background: @noti-close-bg; border-radius: 50%; }
-.close-button:hover { background: @noti-close-bg-hover; }
-.widget-title { color: @text; font-weight: 600; margin: 4px 6px 10px; }
-.widget-title > button { color: @accent; border-radius: 10px; }
-.widget-dnd { color: @text; margin: 4px 6px 12px; }
-.widget-dnd > switch:checked { background: @accent; }
-.notification.critical { border-color: #b03957; }
