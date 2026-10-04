@@ -141,6 +141,23 @@
   padding: 5px 4px;
 }
 
+/* Opening the panel focuses its first row. Highlight the cards themselves,
+   never the rectangular list/stack allocation behind their rounded edges. */
+.control-center .notification-group,
+.control-center .notification-row {
+  border-radius: 20px;
+  outline: none;
+}
+
+.control-center .notification-group:focus,
+.control-center .notification-row:focus {
+  background: transparent;
+}
+
+.control-center .notification-group:focus .notification:not(.critical) {
+  border-color: rgba(168, 63, 116, 0.45);
+}
+
 .notification-row .notification-background .notification .notification-default-action {
   padding: 10px;
 }
@@ -232,8 +249,7 @@
 
 .notification-default-action:focus-visible,
 button:focus-visible,
-switch:focus-visible,
-.notification-group:focus-visible {
+switch:focus-visible {
   outline: 2px solid var(--bg-selected);
   outline-offset: -2px;
 }
